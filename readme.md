@@ -325,7 +325,7 @@ function getName() {
   console.log("5")
 }
 Foo.getName() // 2
-getName() // 4
+getName() // 4 原因：getName先提升了声明，后赋值
 Foo().getName() //1 ? 4 ? 2 ?报错
 getName() // ?    1
 new Foo.getName() //  2
