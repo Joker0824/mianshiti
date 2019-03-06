@@ -332,3 +332,79 @@ new Foo.getName() //  2
 new Foo().getName() // 3
 new new Foo().getName() // 3
 ```
+
+#### [深拷贝和浅拷贝](https://juejin.im/post/5beb93de6fb9a049c30ac9ee "深拷贝和浅拷贝")
+
+- 深拷贝和浅拷贝的区别
+  - 浅拷贝
+    > 将原对象或原数组的引用直接赋给新对象，新数组，新对象／数组只是原对象的一个引用
+  - 深拷贝
+    > 创建一个新的对象和数组，将原对象的各项属性的“值”（数组的所有元素）拷贝过来，是“值”而不是“引用”
+
+##### 深拷贝
+
+> 我们希望在改变新的数组（对象）的时候，不改变原数组（对象）
+
+1. 通过 `JSON.parse(JSON.stringify())`
+
+```javascript
+var obj1 = { body: { a: 10 } }
+var obj2 = JSON.parse(JSON.stringify(obj1))
+obj2.body.a = 20
+console.log(obj1)
+// { body: { a: 10 } } <-- 沒被改到
+console.log(obj2)
+// { body: { a: 20 } }
+console.log(obj1 === obj2)
+// false
+console.log(obj1.body === obj2.body)
+// false
+/* 这样做是真正的Deep Copy，这种方法简单易用。
+但是这种方法也有不少坏处，譬如它会抛弃对象的constructor。也就是深拷贝之后，不管这个对象原来的构造函数是什么，在深拷贝之后都会变成Object。
+这种方法能正确处理的对象只有 Number, String, Boolean, Array, 扁平对象，即那些能够被 json 直接表示的数据结构。RegExp对象是无法通过这种方式深拷贝。 */
+
+// 也就是说，只有可以转成JSON格式的对象才可以这样用，像function没办法转成JSON。
+
+var obj1 = {
+  fun: function() {
+    console.log(123)
+  }
+}
+var obj2 = JSON.parse(JSON.stringify(obj1))
+console.log(typeof obj1.fun)
+// 'function'
+console.log(typeof obj2.fun)
+// 'undefined' <-- 没复制
+// 要复制的function会直接消失，所以这个方法只能用在单纯只有数据的对象。
+```
+
+2. 递归拷贝
+
+```javascript
+function deepClone(initalObj, finalObj) {
+  var obj = finalObj || {}
+  for (var i in initalObj) {
+    var prop = initalObj[i] // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+    if (prop === obj) {
+      continue
+    }
+    if (typeof prop === "object") {
+      obj[i] = prop.constructor === Array ? [] : {}
+      arguments.callee(prop, obj[i])
+    } else {
+      obj[i] = prop
+    }
+  }
+  return obj
+}
+var str = {}
+var obj = { a: { a: "hello", b: 21 } }
+deepClone(obj, str)
+console.log(str.a)
+```
+
+3. Lodash 库
+
+```javascript
+_.cloneDeep
+```
