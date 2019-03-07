@@ -434,9 +434,7 @@ console.log(obj1.b.f === obj2.b.f)
 
 ##### [数组去重](https://juejin.im/post/5b0284ac51882542ad774c45 "数组去重")
 
-img
-
-1. 利用 indexOf()
+1. 利用 `indexOf()`
 
 ```javascript
 functon unique(arr) {
@@ -454,7 +452,7 @@ functon unique(arr) {
 
 ```
 
-2. 利用 includes()
+2. 利用 `includes()`
 
 ```javascript
 functon unique(arr) {
@@ -468,7 +466,7 @@ functon unique(arr) {
 }
 ```
 
-3. 使用 Set
+3. 使用 `Set`
 
 ```javascript
 Array.prototype.unique = function() {
@@ -481,7 +479,7 @@ Array.prototype.unique = function() {
 }
 ```
 
-4. 使用 Map
+4. 使用 `Map`
 
 ```javascript
 Array.prototype.unique = function() {
