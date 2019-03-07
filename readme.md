@@ -1,6 +1,6 @@
 ## 面试题
 
-#### js 实现继承的几种方式
+#### [JavaScript 实现继承的几种方式](https://juejin.im/entry/58dfbe0361ff4b006b166388 "JavaScript实现继承的几种方式")
 
 1. 类式继承
 
@@ -209,6 +209,10 @@ console.log(dog.color) // "黑色"
 // 不知道你有没有注意到一点，我在子类的构造方法中调用了super方法，它表示父类的构造函数，用来新建父类的this对象。
 // 注意：子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
 ```
+
+#### [JavaScript 创建对象的九种方法](https://www.cnblogs.com/ayyl/p/5968568.html "`JavaScript` 创建对象的 7 种方法")
+
+1. 工厂模式
 
 #### 完美数
 
