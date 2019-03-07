@@ -8,28 +8,16 @@
   </head>
   <body>
     <script>
-      function deepClone(initalObj, finalObj) {
-        var obj = finalObj || {}
-        for (var i in initalObj) {
-          var prop = initalObj[i] // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
-          if (prop === obj) {
-            continue
-          }
-          if (typeof prop === "object") {
-            obj[i] = prop.constructor === Array ? [] : {}
-            arguments.callee(prop, obj[i])
-          } else {
-            obj[i] = prop
-          }
-        }
-        return obj
-      }
-      var str = {}
-      var obj = { a: { a: "hello", b: 21 } }
-      deepClone(obj, str)
-      str.a.a = "fuck"
-      console.log(str)
-      console.log(obj)
+      functon unique(arr) {
+         let res = []
+         for (let i = 0; i < arr.length; i++) {
+           if (res.indexOf(arr[i]) === -1) {
+             res.push(arr[i])
+           }
+         }
+         return res
+       }
+       console.log(unique(arr))
     </script>
   </body>
 </html>

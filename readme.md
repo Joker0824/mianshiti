@@ -431,3 +431,75 @@ var obj2 = $.extend(true, {}, obj1)
 console.log(obj1.b.f === obj2.b.f)
 // false
 ```
+
+##### [数组去重](https://juejin.im/post/5b0284ac51882542ad774c45 "数组去重")
+
+img
+
+1. 利用 indexOf()
+
+```javascript
+functon unique(arr) {
+   let res = []
+   for (let i = 0; i < arr.length; i++) {
+     if (res.indexOf(arr[i]) === -1) {
+       res.push(arr[i])
+     }
+   }
+   return res
+ }
+ console.log(unique(arr))
+//[ 1,   'true',   'a',   true,   false,   undefined,   null,   NaN,   NaN,   'NaN',   0,   {},   {}, [], []]
+
+
+```
+
+2. 利用 includes()
+
+```javascript
+functon unique(arr) {
+ let res = []
+ for (let i = 0; i < arr.length; i++) {
+     if (!res.includes(arr[i])) {
+   	    res.push(arr[i])
+     }
+ }
+ return res
+}
+```
+
+3. 使用 Set
+
+```javascript
+Array.prototype.unique = function() {
+  const set = new Set(this)
+  return Array.from(set)
+}
+
+Array.prototype.unique = function() {
+  return [...new Set(this)]
+}
+```
+
+4. 使用 Map
+
+```javascript
+Array.prototype.unique = function() {
+  const newArray = []
+  const tmp = new Map()
+  for (let i = 0; i < this.length; i++) {
+    if (!tmp.get(this[i])) {
+      tmp.set(this[i], 1)
+      newArray.push(this[i])
+    }
+  }
+  return newArray
+}
+
+Array.prototype.unique = function() {
+  const tmp = new Map()
+  return this.filter(item => {
+    return !tmp.has(item) && tmp.set(item, 1)
+  })
+}
+```
