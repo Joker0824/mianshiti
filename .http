@@ -1,0 +1,11 @@
+POST http://119.6.84.89:7001/scwssb/g04Action!queryData.do HTTP/1.1
+content-type: application/json
+
+{
+    "dto['aae140']": 120
+}
+###
+POST http://119.6.84.89:7001/scwssb/g04Action!queryData.do HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+dto%5B'aae140'%5D=120

@@ -1,6 +1,15 @@
 ## 面试题
 
-#### [JavaScript 实现继承的几种方式](https://juejin.im/entry/58dfbe0361ff4b006b166388 "JavaScript实现继承的几种方式")
+### 目录
+
+- [JavaScript 实现继承的几种方式](#JavaScript实现继承的几种方式)
+- [JavaScript 创建对象的九种方法](#JavaScript创建对象的九种方法)
+- [完美数](#完美数)
+- [变量提升](#变量提升)
+- [深拷贝和浅拷贝](#深拷贝和浅拷贝)
+- [数组去重](#数组去重)
+
+#### [JavaScript 创建对象的九种方法](https://juejin.im/entry/58dfbe0361ff4b006b166388 "JavaScript实现继承的几种方式")
 
 1. 类式继承
 
@@ -211,8 +220,6 @@ console.log(dog.color) // "黑色"
 ```
 
 #### [JavaScript 创建对象的九种方法](https://www.cnblogs.com/ayyl/p/5968568.html "`JavaScript` 创建对象的 7 种方法")
-
-1. 工厂模式
 
 #### 完美数
 
@@ -436,7 +443,7 @@ console.log(obj1.b.f === obj2.b.f)
 // false
 ```
 
-##### [数组去重](https://juejin.im/post/5b0284ac51882542ad774c45 "数组去重")
+#### [数组去重](https://juejin.im/post/5b0284ac51882542ad774c45 "数组去重")
 
 1. 利用 `indexOf()`
 
