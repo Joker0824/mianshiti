@@ -8,6 +8,7 @@
 - [变量提升](#变量提升)
 - [深拷贝和浅拷贝](#深拷贝和浅拷贝)
 - [数组去重](#数组去重)
+- [布局](#布局)
 
 #### [JavaScript 创建对象的九种方法](https://juejin.im/entry/58dfbe0361ff4b006b166388 "JavaScript实现继承的几种方式")
 
@@ -512,3 +513,220 @@ Array.prototype.unique = function() {
   })
 }
 ```
+
+#### 布局
+
+##### 两列等高布局
+
+1. 使用`table-cell`实现等高布局,使用后元素会在一排显示，两边的等高的高度由较高的一侧的高度决定
+
+```html
+<div class="container">
+  <div class="container-left">
+    <div class="content-left" style="height: 500px"></div>
+  </div>
+  <div class="container-right">
+    <div class="content-right" style="height: 600px;"></div>
+  </div>
+</div>
+```
+
+```css
+.container-left,
+.container-right {
+  display: table-cell;
+  width: 500px;
+}
+```
+
+2. 使用`margin + padding`
+
+```html
+<div class="container">
+  <div class="left">
+    <div class="box" style="height: 200px;"></div>
+  </div>
+  <div class="right">
+    <div class="box" style="height: 800px;"></div>
+  </div>
+</div>
+```
+
+```css
+.container {
+  overflow: hidden;
+}
+
+.left,
+.right {
+  float: left;
+  width: 300px;
+  margin-bottom: -600px;
+  padding-bottom: 600px;
+}
+
+.left {
+  background-color: yellow;
+}
+
+.right {
+  background-color: green;
+}
+```
+
+#### 水平垂直居中
+
+##### 多行文本垂直居中
+
+1. 多行文本垂直居中
+
+```html
+<div class="box">
+  <div class="content">基于行高实现的...</div>
+</div>
+```
+
+```css
+.box {
+  line-height: 120px;
+  background-color: #f0f3f9;
+}
+.content {
+  display: inline-block;
+  line-height: 20px;
+  margin: 0 20px;
+  vertical-align: middle;
+}
+```
+
+##### 使用 position 在某个盒子中居中
+
+1. 盒子有宽高
+
+   1. 使用 `position+margin：auto`
+
+   ```html
+   <div class="father">
+     <div class="son"></div>
+   </div>
+   ```
+
+   ```css
+   .father {
+     width: 800px;
+     height: 500px;
+     position: relative;
+     background-color: yellow;
+   }
+
+   .son {
+     position: absolute;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     width: 300px;
+     height: 300px;
+     margin: auto;
+     background-color: green;
+   }
+   ```
+
+   2. 使用 `position+margin` 盒子宽高的负值
+
+   ```html
+   <div class="father">
+     <div class="son"></div>
+   </div>
+   ```
+
+   ```css
+   .father {
+     width: 800px;
+     height: 500px;
+     position: relative;
+     background-color: yellow;
+   }
+
+   .son {
+     position: absolute;
+     width: 300px;
+     height: 300px;
+     left: 50%;
+     top: 50%;
+     margin-left: -150px;
+     margin-top: -150px;
+     background-color: green;
+   }
+   ```
+
+2. 盒子没有宽高
+
+   1. 使用 `position+tranform`
+
+   ```html
+   <div class="father">
+     <div class="son">
+       <div class="content"></div>
+     </div>
+   </div>
+   ```
+
+   ```css
+   .father {
+     width: 800px;
+     height: 500px;
+     position: relative;
+     background-color: yellow;
+   }
+
+   .son {
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%, -50%);
+     background-color: green;
+   }
+   .content {
+     width: 200px;
+     height: 100px;
+     background-color: pink;
+   }
+   ```
+
+   2. 使用`writing-mode`居中盒子中的任意元素
+
+   ```html
+   <div class="center-box">
+     <div class="center-wrap">
+       <div class="center-content">
+         任意内容
+       </div>
+     </div>
+   </div>
+   ```
+
+   ```css
+   .center-box {
+     width: 300px;
+     height: 300px;
+     background-color: teal;
+     writing-mode: tb-lr;
+     writing-mode: vertical-lr;
+     text-align: center;
+   }
+
+   .center-wrap {
+     writing-mode: lr-tb;
+     writing-mode: horizontal-tb;
+     text-align: center;
+     width: 100%;
+     display: inline-block;
+   }
+
+   .center-content {
+     display: inline-block;
+     text-align: left;
+     text-align: initial;
+   }
+   ```
