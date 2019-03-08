@@ -11,41 +11,26 @@
       margin: 0;
       padding: 0;
     }
-    .center-box {
+    .left {
+      display: table-cell;
+      width: 0.01%;
+    }
+    .right {
+      display: table-cell;
+    }
+    .left-content {
       width: 300px;
-      height: 300px;
-      background-color: teal;
-      writing-mode: tb-lr;
-      writing-mode: vertical-lr;
-      text-align: center;
-    }
-
-    .center-wrap {
-      writing-mode: lr-tb;
-      writing-mode: horizontal-tb;
-      text-align: center;
-      width: 100%;
-      display: inline-block;
-    }
-
-    .center-content {
-      display: inline-block;
-      text-align: left;
-      text-align: initial;
-    }
-    .content {
-      width: 50px;
-      height: 40px;
+      height: 400px;
       background-color: pink;
     }
   </style>
   <body>
-    <div class="center-box">
-      <div class="center-wrap">
-        <div class="center-content">
-          <div class="content"></div>
-        </div>
+    <!-- table-cell实现 -->
+    <div class="layout-table-cell">
+      <div class="left">
+        <div class="left-content"></div>
       </div>
+      <div class="right"></div>
     </div>
   </body>
 </html>

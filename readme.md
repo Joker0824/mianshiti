@@ -4,11 +4,18 @@
 
 - [JavaScript 实现继承的几种方式](#JavaScript实现继承的几种方式)
 - [JavaScript 创建对象的九种方法](#JavaScript创建对象的九种方法)
-- [完美数](#完美数)
+- [算法题](#算法题)
+  - [完美数](#完美数)
 - [变量提升](#变量提升)
 - [深拷贝和浅拷贝](#深拷贝和浅拷贝)
 - [数组去重](#数组去重)
 - [布局](#布局)
+  - [两列等高布局](#两列等高布局)
+  - [左侧不定宽，右侧自适应](#左侧不定宽，右侧自适应)
+- [水平垂直居中](#水平垂直居中)
+
+  - [多行文本垂直居中](#多行文本垂直居中)
+  - [在某个盒子中居中](#在某个盒子中居中)
 
 #### [JavaScript 创建对象的九种方法](https://juejin.im/entry/58dfbe0361ff4b006b166388 "JavaScript实现继承的几种方式")
 
@@ -222,7 +229,9 @@ console.log(dog.color) // "黑色"
 
 #### [JavaScript 创建对象的九种方法](https://www.cnblogs.com/ayyl/p/5968568.html "`JavaScript` 创建对象的 7 种方法")
 
-#### 完美数
+#### 算法题
+
+##### 完美数
 
 ```javascript
 let wanmei = []
@@ -574,6 +583,82 @@ Array.prototype.unique = function() {
 }
 ```
 
+##### 左侧不定宽，右侧自适应
+
+```html
+<!-- table-cell实现 -->
+<div class="layout-table-cell">
+  <div class="left">
+    <div class="left-content"></div>
+  </div>
+  <div class="right"></div>
+</div>
+<!-- overflow实现 -->
+<div class="layout-overflow">
+  <div class="left">
+    <div class="left-content"></div>
+  </div>
+  <div class="right"></div>
+</div>
+<!-- flex实现 -->
+<div class="layout-flex">
+  <div class="left">
+    <div class="left-content"></div>
+  </div>
+  <div class="right"></div>
+</div>
+```
+
+```css
+/* css */
+.layout-table-cell
+  .left
+    display table-cell
+    width 0.01%
+    background-color pink
+
+    .left-content
+      width 500px
+      height 400px
+
+  .right
+    display table-cell
+    background-color green
+    line-height 1
+
+.layout-overflow
+  overflow hidden
+
+  .left
+    float left
+    background-color red
+
+    .left-content
+      width 500px
+      height 400px
+
+  .right
+    overflow hidden
+    height 400px
+    background-color yellow
+
+.layout-flex
+  display flex
+
+  .left
+    background-color red
+
+    .left-content
+      width 500px
+      height 400px
+
+  .right
+    flex 1
+    overflow hidden
+    height 400px
+    background-color yellow
+```
+
 #### 水平垂直居中
 
 ##### 多行文本垂直居中
@@ -599,7 +684,7 @@ Array.prototype.unique = function() {
 }
 ```
 
-##### 使用 position 在某个盒子中居中
+##### 在某个盒子中居中
 
 1. 盒子有宽高
 
@@ -632,7 +717,7 @@ Array.prototype.unique = function() {
    }
    ```
 
-   2. 使用 `position+margin` 盒子宽高的负值
+   1. 使用 `position+margin` 盒子宽高的负值
 
    ```html
    <div class="father">
@@ -694,7 +779,7 @@ Array.prototype.unique = function() {
    }
    ```
 
-   2. 使用`writing-mode`居中盒子中的任意元素
+   1. 使用`writing-mode`居中盒子中的任意元素
 
    ```html
    <div class="center-box">
